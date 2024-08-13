@@ -1,0 +1,77 @@
+// Every mod must have an ID that is used to uniquely identify the mod and differentiate it from other mods.
+// In order to avoid ID conflicts with other mods, you *must* follow the "author_name.mod_name" format.
+// Do *not* use "cosmoteer" as your author name -- that is reserved for official mods only!
+ID = SHMOOMHS.Remove_DeckCann_BuilnBattle
+
+// You must give a human-readable name for your mod. This is what will be shown in the user interface.
+Name = "Buil and Battle remove deck cannons"
+
+// The version of the mod that will be shown in the user interface. This is optional.
+Version = 1.0.0
+
+// This is a list of Cosmoteer versions that this mod is known to be compatible with.
+// If this mod is turned on and it isn't known to be compatible with the version of Cosmoteer
+// that the player is running, a warning will be displayed. When upgrading the game, mods
+// that aren't known to be compatible with the new version will also be automatically disabled.
+CompatibleGameVersions = ["0.27.0f"]
+
+// This should be set to true for any mod that makes gameplay changes.
+// Setting this to false *MAY* make it possible to play multiplayer with someone else who doesn't have this mod,
+// so long as this mod doesn't actually make any gameplay changes. (Setting this to false will *NOT*
+// magically allow you to play with someone who doesn't have this mod; it will just make the error
+// less informative.) If omitted, the default is true.
+ModifiesGameplay = true
+
+// The name of the mod creator(s) that will be shown in the user interface. This is optional.
+Author = "Brandon"
+
+
+// A longer description of what your mod does to the game. This is optional.
+Description = "This is a mod that removes the deck cannon from the tech pool"\
+         
+
+// Mods can define their own per-language string files.
+// The values in a string file (such as en.rules) will add to
+// and override any values in the base string file (such as Data\strings\en.rules).
+// Each language supported should have its own string file named
+// after the two-letter 639-1 language code for that language.
+StringsFolder = "strings"
+
+// The primary way mods modify the game is through "actions".
+//
+// Actions are little commands that modify the game's .rules files *after* they have been
+// loaded into RAM. (The actual .rules files in the 'Data' folder are never modified
+// and so disabling a mod will cause the game to revert back to its vanilla state.)
+//
+// First, the game loads the vanilla .rules files normally.
+// Then, for every mod that is enabled, that mod's "actions" are run on
+// top of the loaded .rules files, modifying them.
+//
+// Using this technique, mods can make almost any change to the game
+// that *could* be made by modifying the .rules files directly, but
+// without actually having to make any permanent changes to the game files.
+//
+// The examples below show all the different kinds of "actions" that can be
+// performed on the vanilla .rules data.
+//
+// Note that it's very easy to make a modification that will cause the game
+// to crash when loading. The log .txt file may have details on why it crashed.
+//
+// There are a small number of .rules files that can't be modified using actions.
+// The most prominent example is the language string files (such as en.rules)
+// which are modified using the StringsFolder setting above.
+Actions
+[
+	// Remove the 9th item (Deck cannon) from tech list. Syntax could be wrong
+	{
+		// The "Replace" action changes a vanilla data field to a modded data field.
+		Action = Remove
+
+		// This is the file and data field in it that should be replaced.
+		Remove = "<modes/pvp/pvp_buildbattle/techs_buildbattle.rules>/Techs/9"
+
+		IgnoreIfNotExisting = false
+
+	}
+
+]
